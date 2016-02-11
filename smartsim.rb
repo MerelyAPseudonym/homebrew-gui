@@ -18,9 +18,7 @@ class Smartsim < Formula
   depends_on "gettext"
 
   def install
-    system "./configure", "--disable-debug",
-                          "--disable-dependency-tracking",
-                          "--disable-silent-rules",
+    system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}"
     system "make", "install"
   end
@@ -29,3 +27,6 @@ class Smartsim < Formula
     system "#{bin}/smartsim", "--version"
   end
 end
+
+# TODO patch `rm --force`
+# TODO patch `sed --expression`
