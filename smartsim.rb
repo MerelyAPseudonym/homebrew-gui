@@ -18,8 +18,17 @@ class Smartsim < Formula
   depends_on "librsvg"
   # depends_on "libxml2"
   depends_on "glib"
+  depends_on "autoconf" => :build
+  depends_on "automake" => :build
   depends_on "pkg-config" => :build
+<<<<<<< Updated upstream
   # depends_on "gettext"
+=======
+  depends_on "vala" => :build
+  depends_on "gettext"
+  
+  patch :DATA
+>>>>>>> Stashed changes
 
   def install
     system "./configure", "--disable-dependency-tracking",
@@ -32,6 +41,7 @@ class Smartsim < Formula
   end
 end
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 # TODO patch `rm --force`
 # TODO patch `sed --expression`
@@ -50,4 +60,34 @@ AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 
 
+>>>>>>> Stashed changes
+=======
+__END__
+diff --git a/resources_tar/Makefile.am b/resources_tar/Makefile.am
+index 0d27fb5..3e2a967 100644
+--- a/resources_tar/Makefile.am
++++ b/resources_tar/Makefile.am
+@@ -6,5 +6,5 @@ install-data-hook:
+ 	cd $(DESTDIR)$(pkgdatadir); \
+ 	cat $(RESOURCES_TAR) | $(TAR) --list > uninstall_manifest.txt; \
+ 	cat $(RESOURCES_TAR) | $(TAR) --no-same-owner --extract; \
+-	rm --force $(RESOURCES_TAR); \
+-	cat uninstall_manifest.txt | sed --expression='s/^\|$$/"/g' | xargs chmod a=rX,u+w
++	rm -f $(RESOURCES_TAR); \
++	cat uninstall_manifest.txt | sed -e 's/^\|$$/"/g' | xargs chmod a=rX,u+w
+diff --git a/resources_tar/Makefile.in b/resources_tar/Makefile.in
+index 4b898f2..277f88d 100644
+--- a/resources_tar/Makefile.in
++++ b/resources_tar/Makefile.in
+@@ -414,8 +414,8 @@ install-data-hook:
+ 	cd $(DESTDIR)$(pkgdatadir); \
+ 	cat $(RESOURCES_TAR) | $(TAR) --list > uninstall_manifest.txt; \
+ 	cat $(RESOURCES_TAR) | $(TAR) --no-same-owner --extract; \
+-	rm --force $(RESOURCES_TAR); \
+-	cat uninstall_manifest.txt | sed --expression='s/^\|$$/"/g' | xargs chmod a=rX,u+w
++	rm -f $(RESOURCES_TAR); \
++	cat uninstall_manifest.txt | sed -e 's/^\|$$/"/g' | xargs chmod a=rX,u+w
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
 >>>>>>> Stashed changes
